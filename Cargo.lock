@@ -1935,6 +1935,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "eq-program-commitment-creation"
+version = "0.1.6"
+dependencies = [
+ "celestia-types",
+ "eq-common",
+ "nmt-rs",
+ "sha3",
+ "sp1-zkvm",
+ "tendermint",
+ "tendermint-proto",
+]
+
+[[package]]
 name = "eq-program-keccak-inclusion"
 version = "0.1.6"
 dependencies = [
