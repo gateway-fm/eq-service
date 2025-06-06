@@ -10,7 +10,7 @@ publish = false
 [dependencies]
 # TODO: use workspace version, cannot override default feats though... 
 eq-common = {path = "../common", default-features = false}
-
+sp1-bn254-poseidon = {git = "https://github.com/S1nus/sp1-poseidon2-bn254-scalar"}
 sp1-zkvm = {workspace = true}
 celestia-types = {workspace = true}
 nmt-rs = {workspace = true}
