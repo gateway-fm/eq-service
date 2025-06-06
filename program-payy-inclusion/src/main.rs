@@ -5,6 +5,7 @@ sp1_zkvm::entrypoint!(main);
 use celestia_types::{blob::Blob, hash::Hash, AppVersion, ShareProof};
 use eq_common::{PayyInclusionToDataRootProofInput, PayyInclusionToDataRootProofOutput};
 use sha3::{Digest, Keccak256};
+use sp1_bn254_poseidon::fields::bn256::FpBN256;
 
 pub fn main() {
     println!("cycle-tracker-start: deserialize input");
