@@ -45,6 +45,7 @@ pub struct InclusionService {
     pub queue_db: SledTree,
     pub finished_db: SledTree,
     pub job_sender: mpsc::UnboundedSender<Option<Job>>,
+    pub network_rpc_url: String,
 }
 
 impl InclusionService {
@@ -56,6 +57,7 @@ impl InclusionService {
         queue_db: SledTree,
         finished_db: SledTree,
         job_sender: mpsc::UnboundedSender<Option<Job>>,
+        network_rpc_url: String,
     ) -> Self {
         InclusionService {
             config,
@@ -65,6 +67,7 @@ impl InclusionService {
             queue_db,
             finished_db,
             job_sender,
+            network_rpc_url,
         }
     }
 }
@@ -556,7 +559,7 @@ impl InclusionService {
         self.zk_client_handle
             .get_or_init(|| async {
                 debug!("Building ZK client");
-                let client = sp1_sdk::ProverClient::builder().network().build();
+                let client = sp1_sdk::ProverClient::builder().network().rpc_url(&self.network_rpc_url).build();
                 Arc::new(client)
             })
             .await

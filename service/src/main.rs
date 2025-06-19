@@ -16,8 +16,8 @@ use tonic::transport::Server;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     env_logger::init();
 
-    std::env::var("NETWORK_PRIVATE_KEY")
-        .expect("NETWORK_PRIVATE_KEY for Succinct Prover env var required");
+    let network_rpc_url = std::env::var("NETWORK_RPC_URL")
+        .expect("NETWORK_RPC_URL env var required");
     let da_node_token = std::env::var("CELESTIA_NODE_AUTH_TOKEN")
         .expect("CELESTIA_NODE_AUTH_TOKEN env var required");
     let da_node_ws =
@@ -46,6 +46,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         queue_db.clone(),
         finished_db.clone(),
         job_sender.clone(),
+        network_rpc_url,
     ));
 
     tokio::spawn({
